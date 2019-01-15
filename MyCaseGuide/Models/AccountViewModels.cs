@@ -48,10 +48,13 @@ namespace MyCaseGuide.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        //[Required]
+        //[Display(Name = "Email")]
+        //[EmailAddress]
+        //public string Email { get; set; }
+        [Required,MaxLength(30)]
+        [Display(Name ="User Name")]
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +67,15 @@ namespace MyCaseGuide.Models
 
     public class RegisterViewModel
     {
+        [Required,MaxLength(30)]
+        //[EmailAddress]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
+        [Display(Name ="User Role")]
+        [Required]
+        public string UserRole { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
