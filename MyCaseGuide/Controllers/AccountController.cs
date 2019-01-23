@@ -17,17 +17,17 @@ namespace MyCaseGuide.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private ApplicationDbContext _context;
+        private ApplicationDbContext _context =new ApplicationDbContext();
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ApplicationDbContext context )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            _context = context;
+            //_context = context;
         }
 
         public ApplicationSignInManager SignInManager
@@ -59,28 +59,10 @@ namespace MyCaseGuide.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            //Create an admin if needed
-            //CreateAdminUser();
             
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-        //private RoleManager _roleManager;
-        //public ApplicationRoleManager RoleManager
-        //{
-        //    get
-        //    {
-        //        return _roleManager ?? HttpContext.GetOwinContext().GetUserManager();
-        //    }
-        //    set
-        //    {
-        //        _roleManager = value;
-        //    }
-        //}
-        //private void CreateAdminUser()
-        //{
-            //throw new NotImplementedException();
-        //}
 
         //
         // POST: /Account/Login
@@ -160,7 +142,8 @@ namespace MyCaseGuide.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.RoleNames = new SelectList(_context.Roles.Where(u => !u.Name.Contains("Administrator")).ToList(), "Name", "Name");
+            ViewBag.RoleNames = new SelectList(_context.Roles.Where(u => u.Name != "Administrator").ToList(), "Name", "Name");
+            //ViewBag.RoleNames = new SelectList(_context.Roles.ToList(), "Name", "Name");
             return View();
         }
 

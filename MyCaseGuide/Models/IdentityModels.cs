@@ -35,5 +35,7 @@ namespace MyCaseGuide.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<MyCaseGuide.Models.Client> Clients { get; set; }
     }
 }
