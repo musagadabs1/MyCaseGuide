@@ -23,11 +23,26 @@ namespace MyCaseGuide
 
             ApplicationDbContext context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             if (!roleManager.RoleExists(roleNameAdmin))
             {
                 var role = new IdentityRole();
                 role.Name = roleNameAdmin;
                 roleManager.Create(role);
+
+                var user = new ApplicationUser();
+                user.UserName = "Admin";
+                user.Email = "admin@admin.com";
+
+                string pwd = "admin@123";
+
+                var chkUser = userManager.Create(user, pwd);
+
+                //Add default to Admin Role
+                if (chkUser.Succeeded)  
+                {
+                    var userRoleAdd = userManager.AddToRole(user.Id, roleNameAdmin);
+                }
             }
             if (!roleManager.RoleExists(roleNameAttorney))
             {
