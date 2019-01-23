@@ -5,9 +5,9 @@ using System.Web;
 
 namespace MyCaseGuide.Models
 {
-    public class Case
+    public class MyCase
     {
-        public int CaseId { get; set; }
+        public int MyCaseId { get; set; }
         public int ClientId { get; set; }
         public int StaffId { get; set; }
         public string CaseName { get; set; }

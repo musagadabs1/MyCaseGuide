@@ -37,5 +37,7 @@ namespace MyCaseGuide.Models
         }
 
         public System.Data.Entity.DbSet<MyCaseGuide.Models.Client> Clients { get; set; }
+
+        public System.Data.Entity.DbSet<MyCaseGuide.Models.Case> Cases { get; set; }
     }
 }
