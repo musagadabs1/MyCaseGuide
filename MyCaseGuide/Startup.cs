@@ -12,7 +12,7 @@ namespace MyCaseGuide
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            //CreateRoles();
+           // CreateRoles();
         }
         private void CreateRoles()
         {
@@ -24,15 +24,17 @@ namespace MyCaseGuide
             ApplicationDbContext context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            if (!roleManager.RoleExists(roleNameAdmin))
+            if (roleManager.RoleExists(roleNameAdmin))
             {
-                var role = new IdentityRole();
-                role.Name = roleNameAdmin;
-                roleManager.Create(role);
+                //var role = new IdentityRole();
+                //role.Name = roleNameAdmin;
+                //roleManager.Create(role);
 
-                var user = new ApplicationUser();
-                user.UserName = "Admin";
-                user.Email = "admin@admin.com";
+                var user = new ApplicationUser
+                {
+                    UserName = "Admin",
+                    Email = "admin@admin.com"
+                };
 
                 string pwd = "admin@123";
 

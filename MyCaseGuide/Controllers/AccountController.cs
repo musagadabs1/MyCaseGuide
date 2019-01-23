@@ -17,15 +17,17 @@ namespace MyCaseGuide.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,ApplicationDbContext context )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _context = context;
         }
 
         public ApplicationSignInManager SignInManager
@@ -158,6 +160,7 @@ namespace MyCaseGuide.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.RoleNames = new SelectList(_context.Roles.Where(u => !u.Name.Contains("Administrator")).ToList(), "Name", "Name");
             return View();
         }
 
