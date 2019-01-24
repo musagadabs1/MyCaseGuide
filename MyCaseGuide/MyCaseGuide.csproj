@@ -177,6 +177,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MyCasesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,6 +190,10 @@
     <Compile Include="Migrations\201901231233555_Client.cs" />
     <Compile Include="Migrations\201901231233555_Client.Designer.cs">
       <DependentUpon>201901231233555_Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901240638335_ClientCase.cs" />
+    <Compile Include="Migrations\201901240638335_ClientCase.Designer.cs">
+      <DependentUpon>201901240638335_ClientCase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -267,6 +272,11 @@
     <Content Include="Views\Clients\Details.cshtml" />
     <Content Include="Views\Clients\Edit.cshtml" />
     <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\MyCases\Create.cshtml" />
+    <Content Include="Views\MyCases\Delete.cshtml" />
+    <Content Include="Views\MyCases\Details.cshtml" />
+    <Content Include="Views\MyCases\Edit.cshtml" />
+    <Content Include="Views\MyCases\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901231233555_Client.resx">
       <DependentUpon>201901231233555_Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901240638335_ClientCase.resx">
+      <DependentUpon>201901240638335_ClientCase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

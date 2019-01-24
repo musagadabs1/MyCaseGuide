@@ -11,117 +11,113 @@ using MyCaseGuide.Models;
 
 namespace MyCaseGuide.Controllers
 {
-    [Authorize(Roles ="Administrator,Attorney,Lawyer,User")]
-    public class ClientsController : Controller
+    [Authorize(Roles = "Administrator,Attorney,Lawyer")]
+    public class MyCasesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Clients
+        // GET: MyCases
         public async Task<ActionResult> Index()
         {
-            var user = User.Identity;
-            return View(await db.Clients.Where(u => u.CreatedBy.Equals(user.Name)).ToListAsync());
+            var myCases = db.MyCases.Include(m => m.Client);
+            return View(await myCases.ToListAsync());
         }
 
-        // GET: Clients/Details/5
+        // GET: MyCases/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = await db.Clients.FindAsync(id);
-            if (client == null)
+            MyCase myCase = await db.MyCases.FindAsync(id);
+            if (myCase == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            return View(myCase);
         }
 
-        // GET: Clients/Create
+        // GET: MyCases/Create
         public ActionResult Create()
         {
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName");
             return View();
         }
 
-        // POST: Clients/Create
+        // POST: MyCases/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ClientId,FirstName,MiddleName,LastName,EmailAddress,ContactGroup,PhoneNumber,Address,City,Country,State,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] Client client)
+        public async Task<ActionResult> Create([Bind(Include = "MyCaseId,ClientId,StaffId,CaseName,CaseNumber,Opened,PracticeArea,CaseStage,Description,StatuteOfLimitation,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] MyCase myCase)
         {
             if (ModelState.IsValid)
             {
-                var user = User.Identity;
-                var dateCreated = DateTime.Today;
-                client.CreatedBy = user.Name;
-                client.CreatedDate = dateCreated;
-                db.Clients.Add(client);
+                db.MyCases.Add(myCase);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(client);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", myCase.ClientId);
+            return View(myCase);
         }
 
-        // GET: Clients/Edit/5
+        // GET: MyCases/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = await db.Clients.FindAsync(id);
-            if (client == null)
+            MyCase myCase = await db.MyCases.FindAsync(id);
+            if (myCase == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", myCase.ClientId);
+            return View(myCase);
         }
 
-        // POST: Clients/Edit/5
+        // POST: MyCases/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ClientId,FirstName,MiddleName,LastName,EmailAddress,ContactGroup,PhoneNumber,Address,City,Country,State,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] Client client)
+        public async Task<ActionResult> Edit([Bind(Include = "MyCaseId,ClientId,StaffId,CaseName,CaseNumber,Opened,PracticeArea,CaseStage,Description,StatuteOfLimitation,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] MyCase myCase)
         {
             if (ModelState.IsValid)
             {
-                var user = User.Identity;
-                var dateCreated = DateTime.Today;
-                client.ModifiedBy = user.Name;
-                client.CreatedDate = dateCreated;
-                db.Entry(client).State = EntityState.Modified;
+                db.Entry(myCase).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(client);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", myCase.ClientId);
+            return View(myCase);
         }
 
-        // GET: Clients/Delete/5
+        // GET: MyCases/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = await db.Clients.FindAsync(id);
-            if (client == null)
+            MyCase myCase = await db.MyCases.FindAsync(id);
+            if (myCase == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            return View(myCase);
         }
 
-        // POST: Clients/Delete/5
+        // POST: MyCases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Client client = await db.Clients.FindAsync(id);
-            db.Clients.Remove(client);
+            MyCase myCase = await db.MyCases.FindAsync(id);
+            db.MyCases.Remove(myCase);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
