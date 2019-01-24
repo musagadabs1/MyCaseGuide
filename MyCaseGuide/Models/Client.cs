@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,15 +9,36 @@ namespace MyCaseGuide.Models
     public class Client
     {
         public int ClientId { get; set; }
+        [Required(AllowEmptyStrings =false,ErrorMessage ="First Name is Required.")]
+        [Display(Name ="First Name")]
         public string FirstName { get; set; }
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
+        [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name is Required.")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Email Address is Required.")]
+        [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Contact Group.")]
+        [Display(Name = "Contact Group")]
         public Group ContactGroup { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Mobile Number is Required.")]
+        [Display(Name = "Mobile Number")]
         public string PhoneNumber { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Address is Required.")]
+        [Display(Name = "Contact Address")]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
+        //[Display(Name = "First Name")]
         public string City { get; set; }
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
+        //[Display(Name = "First Name")]
         public string Country { get; set; }
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
+        //[Display(Name = "First Name")]
         public string State { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }

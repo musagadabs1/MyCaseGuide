@@ -18,6 +18,6 @@ namespace MyCaseGuide.Models
         public string ModifiedBy { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-        public virtual ICollection<Case> Cases { get; set; }
+        public virtual ICollection<MyCase> Cases { get; set; }
     }
 }
