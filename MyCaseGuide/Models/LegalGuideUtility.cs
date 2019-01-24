@@ -9,26 +9,11 @@ namespace MyCaseGuide.Models
 {
     public static class LegalGuideUtility
     {
-        //public static bool IsAdminUser()
-        //{
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        var user = User.Identity;
-        //        ApplicationDbContext context = new ApplicationDbContext();
-        //        var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+        public const string ADMINISTRATOR = "Administrator";
+        public const string ATTORNEY = "Attorney";
+        public const string LAWYER = "Lawyer";
+        public const string User = "User";
 
-        //        var getRole = userManager.GetRoles(user.GetUserId());
-        //        if (getRole[0].ToString() == "Administrator")
-        //        {
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return false;
-        //    //throw new NotImplementedException();
-        //}
+        public static List<string> Roles = new List<string> { "Administrator", "Attorney", "Lawyer", "User" };
     }
 }

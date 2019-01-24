@@ -1,0 +1,75 @@
+﻿@model IEnumerable<MyCaseGuide.Models.Invoice>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MyCase.CaseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FeeStructure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmountDue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnpaidBalance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MyCase.CaseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FeeStructure)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmountDue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnpaidBalance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InvoiceId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.InvoiceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceId })
+        </td>
+    </tr>
+}
+
+</table>

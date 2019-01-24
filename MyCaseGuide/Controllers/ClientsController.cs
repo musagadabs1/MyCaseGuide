@@ -8,10 +8,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyCaseGuide.Models;
+using System.Web.Security;
 
 namespace MyCaseGuide.Controllers
 {
-    [Authorize(Roles ="Administrator,Attorney,Lawyer,User")]
+    [Authorize(Roles ="Administrator,Attorney,Lawyer")]
     public class ClientsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -20,6 +21,11 @@ namespace MyCaseGuide.Controllers
         public async Task<ActionResult> Index()
         {
             var user = User.Identity;
+
+            if (HttpContext.User.IsInRole(LegalGuideUtility.ADMINISTRATOR))
+            {
+                return View(await db.Clients.ToListAsync());
+            }
             return View(await db.Clients.Where(u => u.CreatedBy.Equals(user.Name)).ToListAsync());
         }
 

@@ -40,6 +40,10 @@ namespace MyCaseGuide.Models
 
         public System.Data.Entity.DbSet<MyCaseGuide.Models.MyCase> MyCases { get; set; }
 
+        public System.Data.Entity.DbSet<MyCaseGuide.Models.Staff> Staffs { get; set; }
+
+        public System.Data.Entity.DbSet<MyCaseGuide.Models.Invoice> Invoices { get; set; }
+
         //public System.Data.Entity.DbSet<MyCaseGuide.Models.MyCase> MyCases { get; set; }
     }
 }
