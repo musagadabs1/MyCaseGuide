@@ -20,15 +20,16 @@ namespace MyCaseGuide.Models
         public string LastName { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Email Address is Required.")]
         [Display(Name = "Email Address")]
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Contact Group.")]
-        [Display(Name = "Contact Group")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Client Group.")]
+        [Display(Name = "Client Group")]
         public Group ContactGroup { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Mobile Number is Required.")]
         [Display(Name = "Mobile Number")]
         public string PhoneNumber { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Address is Required.")]
-        [Display(Name = "Contact Address")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Client Address is Required.")]
+        [Display(Name = "Client Address")]
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
         //[Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
