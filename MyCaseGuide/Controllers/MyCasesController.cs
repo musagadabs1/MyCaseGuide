@@ -51,6 +51,7 @@ namespace MyCaseGuide.Controllers
         public ActionResult Create()
         {
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName");
+            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName " );
             return View();
         }
 
@@ -63,12 +64,17 @@ namespace MyCaseGuide.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = User.Identity;
+                myCase.CreatedBy = user.Name;
+                myCase.CreatedDate = DateTime.Today;
+
                 db.MyCases.Add(myCase);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", myCase.ClientId);
+            ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName " , myCase.ClientId);
+            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName " ,myCase.StaffId);
             return View(myCase);
         }
 
@@ -85,6 +91,7 @@ namespace MyCaseGuide.Controllers
                 return HttpNotFound();
             }
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", myCase.ClientId);
+            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName " ,myCase.StaffId);
             return View(myCase);
         }
 
@@ -97,11 +104,16 @@ namespace MyCaseGuide.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = User.Identity;
+                myCase.ModifiedBy = user.Name;
+                myCase.ModifiedDate = DateTime.Today;
+
                 db.Entry(myCase).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", myCase.ClientId);
+            ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName " , myCase.StaffId);
             return View(myCase);
         }
 

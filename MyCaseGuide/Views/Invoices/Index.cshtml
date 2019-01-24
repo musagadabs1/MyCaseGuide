@@ -4,11 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>List of Invoices</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -22,18 +22,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UnpaidBalance)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModifiedDate)
         </th>
         <th></th>
     </tr>
@@ -53,21 +41,9 @@
             @Html.DisplayFor(modelItem => item.UnpaidBalance)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModifiedDate)
-        </td>
-        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.InvoiceId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.InvoiceId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceId })
+            @Html.ActionLink("Details", "Details", new { id=item.InvoiceId }) @*|
+            @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceId })*@
         </td>
     </tr>
 }

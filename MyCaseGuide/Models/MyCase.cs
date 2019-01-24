@@ -9,11 +9,11 @@ namespace MyCaseGuide.Models
     public class MyCase
     {
         public int MyCaseId { get; set; }
-        [Required(AllowEmptyStrings =false, ErrorMessage ="Client Id is required.")]
-        [Display(Name ="Client Id")]
+        [Required(AllowEmptyStrings =false, ErrorMessage ="Client Name is required.")]
+        [Display(Name ="Client Name")]
         public int ClientId { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Staff Id is required.")]
-        [Display(Name = "Staff Id")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Staff Name is required.")]
+        [Display(Name = "Staff Name")]
         public int StaffId { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Case Name is required.")]
         [Display(Name = "Case Name")]
