@@ -33,6 +33,7 @@ namespace MyCaseGuide.Models
         public Stage CaseStage { get; set; }
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Client Id is required.")]
         [Display(Name = "Case Description")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Statute Of Limitation is required.")]
         [Display(Name = "Statute Of Limitation")]

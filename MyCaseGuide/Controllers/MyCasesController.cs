@@ -70,7 +70,8 @@ namespace MyCaseGuide.Controllers
 
                 db.MyCases.Add(myCase);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("Create","Invoices");
             }
 
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName " , myCase.ClientId);
