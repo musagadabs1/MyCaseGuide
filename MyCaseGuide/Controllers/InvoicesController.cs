@@ -66,7 +66,7 @@ namespace MyCaseGuide.Controllers
 
                 db.Invoices.Add(invoice);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create","Documents");
             }
 
             ViewBag.MyCaseId = new SelectList(db.MyCases, "MyCaseId", "CaseName", invoice.MyCaseId);
@@ -104,7 +104,7 @@ namespace MyCaseGuide.Controllers
 
                 db.Entry(invoice).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "Documents");
             }
             ViewBag.MyCaseId = new SelectList(db.MyCases, "MyCaseId", "CaseName", invoice.MyCaseId);
             return View(invoice);

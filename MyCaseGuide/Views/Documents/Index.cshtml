@@ -26,9 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.DocPath)
-        </th>
+        </th>*@
         
         <th></th>
     </tr>
@@ -50,9 +50,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.DocPath)
-        </td>
+        </td>*@
         
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.DocumentId }) |
