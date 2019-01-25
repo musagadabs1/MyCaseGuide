@@ -8,9 +8,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyCaseGuide.Models;
+using System.IO;
 
 namespace MyCaseGuide.Controllers
 {
+    [Authorize(Roles ="Administrator,Attorney,Lawyer")]
     public class DocumentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,8 +20,14 @@ namespace MyCaseGuide.Controllers
         // GET: Documents
         public async Task<ActionResult> Index()
         {
+            var user = User.Identity;
+            if (HttpContext.User.IsInRole(LegalGuideUtility.ADMINISTRATOR))
+            {
+                var adminDocuments = db.Documents.Include(d => d.MyCase);
+                return View(await adminDocuments.ToListAsync());
+            }
             var documents = db.Documents.Include(d => d.MyCase);
-            return View(await documents.ToListAsync());
+            return View(await documents.Where(u => u.CreatedBy.Equals(user.Name)).ToListAsync());
         }
 
         // GET: Documents/Details/5
@@ -49,10 +57,26 @@ namespace MyCaseGuide.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "DocumentId,MyCaseId,DocName,AssignedDate,Tags,Description,DocPath,CreatedBy,DateCreated,ModifiedBy,DateModified")] Document document)
+        public async Task<ActionResult> Create([Bind(Include = "DocumentId,MyCaseId,DocName,AssignedDate,Tags,Description,DocPath,CreatedBy,DateCreated,ModifiedBy,DateModified")] Document document, HttpPostedFileBase file)
         {
+            string fileName = string.Empty;
+            string filePath = string.Empty;
             if (ModelState.IsValid)
             {
+                if (file.ContentLength > 0 && file != null)
+                {
+                    filePath = file.FileName;
+                    fileName = Path.GetFileName(file.FileName);
+                }
+                var folderPath = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/Docs";
+                var docPath = Path.Combine(folderPath, filePath);
+
+                var user = User.Identity;
+                document.CreatedBy = user.Name;
+                document.DateCreated = DateTime.Today;
+                document.DocPath = fileName;
+                
+
                 db.Documents.Add(document);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -83,10 +107,26 @@ namespace MyCaseGuide.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "DocumentId,MyCaseId,DocName,AssignedDate,Tags,Description,DocPath,CreatedBy,DateCreated,ModifiedBy,DateModified")] Document document)
+        public async Task<ActionResult> Edit([Bind(Include = "DocumentId,MyCaseId,DocName,AssignedDate,Tags,Description,DocPath,CreatedBy,DateCreated,ModifiedBy,DateModified")] Document document,HttpPostedFileBase file)
         {
+            string filePath = string.Empty;
+            string fileName = string.Empty;
             if (ModelState.IsValid)
             {
+                if (file.ContentLength>0 && file !=null)
+                {
+                    filePath = file.FileName;
+                    fileName = Path.GetFileName(file.FileName);
+                }
+                var folderPath = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/Docs";
+                var docPath = Path.Combine(folderPath, filePath);
+
+                var user = User.Identity;
+                document.DateModified = DateTime.Today;
+                document.ModifiedBy = user.Name;
+                document.DocPath = fileName;
+                
+
                 db.Entry(document).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

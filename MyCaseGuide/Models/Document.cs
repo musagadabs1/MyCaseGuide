@@ -23,7 +23,7 @@ namespace MyCaseGuide.Models
         [Display(Name ="Doc Description")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-        [Required]
+        //[Required]
         [Display(Name ="Document Source")]
         public string DocPath { get; set; }
 
