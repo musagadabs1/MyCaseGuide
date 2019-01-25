@@ -79,7 +79,7 @@ namespace MyCaseGuide.Controllers
 
                 db.Documents.Add(document);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create","CaseEvents");
             }
 
             ViewBag.MyCaseId = new SelectList(db.MyCases, "MyCaseId", "CaseName", document.MyCaseId);
@@ -129,7 +129,7 @@ namespace MyCaseGuide.Controllers
 
                 db.Entry(document).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create", "CaseEvents");
             }
             ViewBag.MyCaseId = new SelectList(db.MyCases, "MyCaseId", "CaseName", document.MyCaseId);
             return View(document);

@@ -6,9 +6,9 @@ using System.Web;
 
 namespace MyCaseGuide.Models
 {
-    public class Event
+    public class CaseEvent
     {
-        public int EventId { get; set; }
+        public int CaseEventId { get; set; }
         [Required(AllowEmptyStrings =false,ErrorMessage ="Case Id is Required.")]
         [Display(Name ="Case Id")]
         public int MyCaseId { get; set; }
@@ -17,7 +17,7 @@ namespace MyCaseGuide.Models
         public int StaffID { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Date And Time is Required.")]
         [Display(Name = "Date And Time")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime DateAndTime { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Case Location is Required.")]
         [Display(Name = "Case Location")]

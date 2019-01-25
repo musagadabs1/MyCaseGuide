@@ -46,6 +46,8 @@ namespace MyCaseGuide.Models
 
         public System.Data.Entity.DbSet<MyCaseGuide.Models.Document> Documents { get; set; }
 
+        public System.Data.Entity.DbSet<MyCaseGuide.Models.CaseEvent> CaseEvents { get; set; }
+
         //public System.Data.Entity.DbSet<MyCaseGuide.Models.MyCase> MyCases { get; set; }
     }
 }
