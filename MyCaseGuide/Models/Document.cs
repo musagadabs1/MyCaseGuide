@@ -23,6 +23,9 @@ namespace MyCaseGuide.Models
         [Display(Name ="Doc Description")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+        [Required]
+        [Display(Name ="Document Source")]
+        public string DocPath { get; set; }
 
         public string CreatedBy { get; set; }
         public DateTime DateCreated { get; set; }
