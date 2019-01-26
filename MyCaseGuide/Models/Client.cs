@@ -24,7 +24,7 @@ namespace MyCaseGuide.Models
         public string EmailAddress { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Client Group.")]
         [Display(Name = "Client Group")]
-        public Group ContactGroup { get; set; }
+        public string ContactGroup { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Mobile Number is Required.")]
         [Display(Name = "Mobile Number")]
         public string PhoneNumber { get; set; }
@@ -47,12 +47,4 @@ namespace MyCaseGuide.Models
         public DateTime ModifiedDate { get; set; }
     }
 
-}
-public enum Group
-{
-    Client = 1,
-    Co_Counsel,
-    Expert,
-    Judge,
-    Unassigned
 }

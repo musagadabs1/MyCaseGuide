@@ -52,6 +52,26 @@ namespace MyCaseGuide.Controllers
         {
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName");
             ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName " );
+
+            ViewBag.Stage = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Discovery",Value="Discovery"},
+                new SelectListItem{Text="In_Trial",Value="In_Trial"},
+                new SelectListItem{Text="On_Hold",Value="On_Hold"}
+            };
+            ViewBag.PracticeArea = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Bankruptcy",Value="Bankruptcy"},
+                new SelectListItem{Text="Business",Value="Business"},
+                new SelectListItem{Text="Civil",Value="Civil"},
+                new SelectListItem{Text="Criminal_Defense",Value="Criminal_Defense"},
+                new SelectListItem{Text="Divorce_Separation",Value="Divorce_Separation"},
+                new SelectListItem{Text="Employment",Value="Employment"},
+                new SelectListItem{Text="EstatePlanning",Value="EstatePlanning"},
+                new SelectListItem{Text="Family",Value="Family"},
+                new SelectListItem{Text="Tax",Value="Tax"},
+                new SelectListItem{Text="Landlord_Tenant",Value="Landlord_Tenant"}
+            };
             return View();
         }
 
@@ -76,6 +96,25 @@ namespace MyCaseGuide.Controllers
 
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName " , myCase.ClientId);
             ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName " ,myCase.StaffId);
+            ViewBag.Stage = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Discovery",Value="Discovery"},
+                new SelectListItem{Text="In_Trial",Value="In_Trial"},
+                new SelectListItem{Text="On_Hold",Value="On_Hold"}
+            };
+            ViewBag.PracticeArea = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Bankruptcy",Value="Bankruptcy"},
+                new SelectListItem{Text="Business",Value="Business"},
+                new SelectListItem{Text="Civil",Value="Civil"},
+                new SelectListItem{Text="Criminal_Defense",Value="Criminal_Defense"},
+                new SelectListItem{Text="Divorce_Separation",Value="Divorce_Separation"},
+                new SelectListItem{Text="Employment",Value="Employment"},
+                new SelectListItem{Text="EstatePlanning",Value="EstatePlanning"},
+                new SelectListItem{Text="Family",Value="Family"},
+                new SelectListItem{Text="Tax",Value="Tax"},
+                new SelectListItem{Text="Landlord_Tenant",Value="Landlord_Tenant"}
+            };
             return View(myCase);
         }
 
@@ -93,6 +132,25 @@ namespace MyCaseGuide.Controllers
             }
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", myCase.ClientId);
             ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName " ,myCase.StaffId);
+            ViewBag.Stage = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Discovery",Value="Discovery"},
+                new SelectListItem{Text="In_Trial",Value="In_Trial"},
+                new SelectListItem{Text="On_Hold",Value="On_Hold"}
+            };
+            ViewBag.PracticeArea = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Bankruptcy",Value="Bankruptcy"},
+                new SelectListItem{Text="Business",Value="Business"},
+                new SelectListItem{Text="Civil",Value="Civil"},
+                new SelectListItem{Text="Criminal_Defense",Value="Criminal_Defense"},
+                new SelectListItem{Text="Divorce_Separation",Value="Divorce_Separation"},
+                new SelectListItem{Text="Employment",Value="Employment"},
+                new SelectListItem{Text="EstatePlanning",Value="EstatePlanning"},
+                new SelectListItem{Text="Family",Value="Family"},
+                new SelectListItem{Text="Tax",Value="Tax"},
+                new SelectListItem{Text="Landlord_Tenant",Value="Landlord_Tenant"}
+            };
             return View(myCase);
         }
 
@@ -115,6 +173,25 @@ namespace MyCaseGuide.Controllers
             }
             ViewBag.ClientId = new SelectList(db.Clients, "ClientId", "FirstName", myCase.ClientId);
             ViewBag.StaffId = new SelectList(db.Staffs, "StaffId", "FirstName " , myCase.StaffId);
+            ViewBag.Stage = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Discovery",Value="Discovery"},
+                new SelectListItem{Text="In_Trial",Value="In_Trial"},
+                new SelectListItem{Text="On_Hold",Value="On_Hold"}
+            };
+            ViewBag.PracticeArea = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Bankruptcy",Value="Bankruptcy"},
+                new SelectListItem{Text="Business",Value="Business"},
+                new SelectListItem{Text="Civil",Value="Civil"},
+                new SelectListItem{Text="Criminal_Defense",Value="Criminal_Defense"},
+                new SelectListItem{Text="Divorce_Separation",Value="Divorce_Separation"},
+                new SelectListItem{Text="Employment",Value="Employment"},
+                new SelectListItem{Text="EstatePlanning",Value="EstatePlanning"},
+                new SelectListItem{Text="Family",Value="Family"},
+                new SelectListItem{Text="Tax",Value="Tax"},
+                new SelectListItem{Text="Landlord_Tenant",Value="Landlord_Tenant"}
+            };
             return View(myCase);
         }
 

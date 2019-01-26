@@ -215,6 +215,18 @@
     <Compile Include="Migrations\201901251121484_CaseEvent.Designer.cs">
       <DependentUpon>201901251121484_CaseEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901252104499_StaffUpdate.cs" />
+    <Compile Include="Migrations\201901252104499_StaffUpdate.Designer.cs">
+      <DependentUpon>201901252104499_StaffUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901260518468_ClientUpdated.cs" />
+    <Compile Include="Migrations\201901260518468_ClientUpdated.Designer.cs">
+      <DependentUpon>201901260518468_ClientUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901260622072_MyCaseUpdated.cs" />
+    <Compile Include="Migrations\201901260622072_MyCaseUpdated.Designer.cs">
+      <DependentUpon>201901260622072_MyCaseUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Billing.cs" />
@@ -239,6 +251,9 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\Images\clipart43844.png" />
+    <Content Include="Content\Images\legal-scale-icon-21.jpg" />
+    <Content Include="Content\Images\legal-scale-icon-5.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -399,11 +414,6 @@
     <Content Include="Views\MyCases\Details.cshtml" />
     <Content Include="Views\MyCases\Edit.cshtml" />
     <Content Include="Views\MyCases\Index.cshtml" />
-    <Content Include="Views\Staffs\Create.cshtml" />
-    <Content Include="Views\Staffs\Delete.cshtml" />
-    <Content Include="Views\Staffs\Details.cshtml" />
-    <Content Include="Views\Staffs\Edit.cshtml" />
-    <Content Include="Views\Staffs\Index.cshtml" />
     <Content Include="Views\Invoices\Create.cshtml" />
     <Content Include="Views\Invoices\Delete.cshtml" />
     <Content Include="Views\Invoices\Details.cshtml" />
@@ -420,6 +430,11 @@
     <Content Include="Views\CaseEvents\Details.cshtml" />
     <Content Include="Views\CaseEvents\Edit.cshtml" />
     <Content Include="Views\CaseEvents\Index.cshtml" />
+    <Content Include="Views\Staffs\Create.cshtml" />
+    <Content Include="Views\Staffs\Delete.cshtml" />
+    <Content Include="Views\Staffs\Details.cshtml" />
+    <Content Include="Views\Staffs\Edit.cshtml" />
+    <Content Include="Views\Staffs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Docs\" />
@@ -458,6 +473,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901251121484_CaseEvent.resx">
       <DependentUpon>201901251121484_CaseEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901252104499_StaffUpdate.resx">
+      <DependentUpon>201901252104499_StaffUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901260518468_ClientUpdated.resx">
+      <DependentUpon>201901260518468_ClientUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901260622072_MyCaseUpdated.resx">
+      <DependentUpon>201901260622072_MyCaseUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -11,7 +11,7 @@ using MyCaseGuide.Models;
 
 namespace MyCaseGuide.Controllers
 {
-    [Authorize(Roles = "Administrator,Attorney,Lawyer")]
+    [Authorize(Roles ="Administrator,Attorney,Lawyer")]
     public class StaffsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -45,6 +45,12 @@ namespace MyCaseGuide.Controllers
         // GET: Staffs/Create
         public ActionResult Create()
         {
+            ViewBag.UserType = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Attorney",Value="Attorney"},
+                new SelectListItem{Text="Paralegal",Value="Paralegal"},
+                new SelectListItem{Text="Staff",Value="Staff"}
+            };
             return View();
         }
 
@@ -76,6 +82,12 @@ namespace MyCaseGuide.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.UserType = new List<SelectListItem>
+            {
+                new SelectListItem{Text="Attorney",Value="Attorney"},
+                new SelectListItem{Text="Paralegal",Value="Paralegal"},
+                new SelectListItem{Text="Staff",Value="Staff"}
+            };
             Staff staff = await db.Staffs.FindAsync(id);
             if (staff == null)
             {

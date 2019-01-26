@@ -47,6 +47,15 @@ namespace MyCaseGuide.Controllers
         // GET: Clients/Create
         public ActionResult Create()
         {
+            ViewBag.ContactGroup = new List<SelectListItem>
+            {
+                new SelectListItem {Text="Client", Value="Client" },
+                 new SelectListItem{   Text="Co_Counsel", Value="Co_Counsel" },
+                 new SelectListItem{  Text="Expert", Value="Expert" },
+                 new SelectListItem{  Text="Judge", Value="Judge" },
+                 new SelectListItem{  Text="Unassigned", Value="Unassigned" }
+
+            };
             return View();
         }
 
@@ -78,6 +87,16 @@ namespace MyCaseGuide.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.ContactGroup = new List<SelectListItem>
+            {
+
+                 new SelectListItem {Text="Client", Value="Client" },
+                 new SelectListItem{   Text="Co_Counsel", Value="Co_Counsel" },
+                 new SelectListItem{  Text="Expert", Value="Expert" },
+                 new SelectListItem{  Text="Judge", Value="Judge" },
+                 new SelectListItem{  Text="Unassigned", Value="Unassigned" }
+
+            };
             Client client = await db.Clients.FindAsync(id);
             if (client == null)
             {

@@ -27,10 +27,10 @@ namespace MyCaseGuide.Models
         public DateTime Opened { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Practice Area is required.")]
         [Display(Name = "Practice Area")]
-        public PracticeArea PracticeArea { get; set; }
+        public string PracticeArea { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Case Stage is required.")]
         [Display(Name = "Case Stage")]
-        public Stage CaseStage { get; set; }
+        public string CaseStage { get; set; }
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Client Id is required.")]
         [Display(Name = "Case Description")]
         [DataType(DataType.MultilineText)]

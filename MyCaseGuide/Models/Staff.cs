@@ -17,9 +17,9 @@ namespace MyCaseGuide.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name is Required.")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "User Type is Required.")]
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "User Type is Required.")]
         [Display(Name = "User Type")]
-        public string UserType { get; set; }
+        public string Type { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Billing Rate is Required.")]
         [Display(Name = "Billing Rate")]
         public int BillingRate { get; set; }
