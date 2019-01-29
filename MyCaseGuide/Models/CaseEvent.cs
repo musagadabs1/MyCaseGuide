@@ -16,9 +16,12 @@ namespace MyCaseGuide.Models
         [Display(Name = "Staff Id")]
         public int StaffID { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Date And Time is Required.")]
-        [Display(Name = "Date And Time")]
+        [Display(Name = "Start")]
         [DataType(DataType.Date)]
-        public DateTime DateAndTime { get; set; }
+        public DateTime Start { get; set; }
+        [Display(Name = "End")]
+        [DataType(DataType.Date)]
+        public DateTime End { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Case Location is Required.")]
         [Display(Name = "Case Location")]
         public string Location { get; set; }

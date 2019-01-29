@@ -11,6 +11,7 @@ using MyCaseGuide.Models;
 
 namespace MyCaseGuide.Controllers
 {
+    [Authorize(Roles ="Administrator,Attorney,Lawyer")]
     public class CaseEventsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,8 +19,14 @@ namespace MyCaseGuide.Controllers
         // GET: CaseEvents
         public async Task<ActionResult> Index()
         {
+            var user = User.Identity;
+            if (HttpContext.User.IsInRole(LegalGuideUtility.ADMINISTRATOR))
+            {
+                var adminCaseEvents = db.CaseEvents.Include(c => c.MyCase).Include(c => c.Staff);
+                return View(await adminCaseEvents.ToListAsync());
+            }
             var caseEvents = db.CaseEvents.Include(c => c.MyCase).Include(c => c.Staff);
-            return View(await caseEvents.ToListAsync());
+            return View(await caseEvents.Where(u => u.CreatedBy.Equals(user.Name)).ToListAsync());
         }
 
         // GET: CaseEvents/Details/5
@@ -50,10 +57,14 @@ namespace MyCaseGuide.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CaseEventId,MyCaseId,StaffID,DateAndTime,Location,EventName,Address,Description,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] CaseEvent caseEvent)
+        public async Task<ActionResult> Create([Bind(Include = "CaseEventId,MyCaseId,StaffID,Start,End,Location,EventName,Address,Description,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] CaseEvent caseEvent)
         {
             if (ModelState.IsValid)
             {
+                var user = User.Identity;
+                caseEvent.CreatedBy = user.Name;
+                caseEvent.CreatedDate = DateTime.Today;
+
                 db.CaseEvents.Add(caseEvent);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -86,10 +97,14 @@ namespace MyCaseGuide.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CaseEventId,MyCaseId,StaffID,DateAndTime,Location,EventName,Address,Description,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] CaseEvent caseEvent)
+        public async Task<ActionResult> Edit([Bind(Include = "CaseEventId,MyCaseId,StaffID,Start,End,Location,EventName,Address,Description,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] CaseEvent caseEvent)
         {
             if (ModelState.IsValid)
             {
+                var user = User.Identity;
+                caseEvent.ModifiedBy = user.Name;
+                caseEvent.ModifiedDate = DateTime.Today;
+
                 db.Entry(caseEvent).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

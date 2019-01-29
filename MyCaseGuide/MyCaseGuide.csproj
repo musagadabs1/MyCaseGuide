@@ -227,10 +227,15 @@
     <Compile Include="Migrations\201901260622072_MyCaseUpdated.Designer.cs">
       <DependentUpon>201901260622072_MyCaseUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901262108497_EventCaseChanged.cs" />
+    <Compile Include="Migrations\201901262108497_EventCaseChanged.Designer.cs">
+      <DependentUpon>201901262108497_EventCaseChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Billing.cs" />
     <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\MyCase.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\CaseEvent.cs" />
@@ -425,16 +430,16 @@
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
     <Content Include="Views\_CalendarEvent.cshtml" />
-    <Content Include="Views\CaseEvents\Create.cshtml" />
-    <Content Include="Views\CaseEvents\Delete.cshtml" />
-    <Content Include="Views\CaseEvents\Details.cshtml" />
-    <Content Include="Views\CaseEvents\Edit.cshtml" />
-    <Content Include="Views\CaseEvents\Index.cshtml" />
     <Content Include="Views\Staffs\Create.cshtml" />
     <Content Include="Views\Staffs\Delete.cshtml" />
     <Content Include="Views\Staffs\Details.cshtml" />
     <Content Include="Views\Staffs\Edit.cshtml" />
     <Content Include="Views\Staffs\Index.cshtml" />
+    <Content Include="Views\CaseEvents\Create.cshtml" />
+    <Content Include="Views\CaseEvents\Delete.cshtml" />
+    <Content Include="Views\CaseEvents\Details.cshtml" />
+    <Content Include="Views\CaseEvents\Edit.cshtml" />
+    <Content Include="Views\CaseEvents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Docs\" />
@@ -482,6 +487,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901260622072_MyCaseUpdated.resx">
       <DependentUpon>201901260622072_MyCaseUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901262108497_EventCaseChanged.resx">
+      <DependentUpon>201901262108497_EventCaseChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

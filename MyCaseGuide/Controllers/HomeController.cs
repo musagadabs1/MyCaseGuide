@@ -17,20 +17,33 @@ namespace MyCaseGuide.Controllers
         public JsonResult GetEventData()
         {
             var user = User.Identity;
-            var result = new JsonResult();
-            List<CaseEvent> events = new List<CaseEvent>();
+            //var result = new JsonResult();
+            List<EventViewModel> events = new List<EventViewModel>();
             try
             {
-                //var getEvents=_context.Eve
+                var getEvents = _context.CaseEvents.ToList();
 
-                return result;
+                foreach (var item in getEvents)
+                {
+                    events.Add(new EventViewModel
+                    {
+                        EventName=item.EventName,
+                        Location=item.Location,
+                        Start=item.Start,
+                        End=item.End,
+                        Description=item.Description
+                    });
+                }
+
+
+                return Json(events,JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
 
-                Console.Write(ex);
+                throw ex;
             }
-            return result;
+            //return result;
         }
         public ActionResult About()
         {
