@@ -11,133 +11,107 @@ using MyCaseGuide.Models;
 
 namespace MyCaseGuide.Controllers
 {
-    [Authorize(Roles ="Administrator,Attorney,Lawyer")]
-    public class StaffsController : Controller
+    public class LoginUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Staffs
+        // GET: LoginUsers
         public async Task<ActionResult> Index()
         {
-            var user = User.Identity;
-            if (HttpContext.User.IsInRole(LegalGuideUtility.ADMINISTRATOR))
-            {
-                return View(await db.Staffs.ToListAsync());
-            }
-            return View(await db.Staffs.Where(u => u.CreatedBy.Equals(user.Name)).ToListAsync());
+            return View(await db.LoginUsers.ToListAsync());
         }
 
-        // GET: Staffs/Details/5
+        // GET: LoginUsers/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Staff staff = await db.Staffs.FindAsync(id);
-            if (staff == null)
+            LoginUser loginUser = await db.LoginUsers.FindAsync(id);
+            if (loginUser == null)
             {
                 return HttpNotFound();
             }
-            return View(staff);
+            return View(loginUser);
         }
 
-        // GET: Staffs/Create
+        // GET: LoginUsers/Create
         public ActionResult Create()
         {
-            ViewBag.UserType = new List<SelectListItem>
-            {
-                new SelectListItem{Text="Attorney",Value="Attorney"},
-                new SelectListItem{Text="Paralegal",Value="Paralegal"},
-                new SelectListItem{Text="Staff",Value="Staff"}
-            };
             return View();
         }
 
-        // POST: Staffs/Create
+        // POST: LoginUsers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "StaffId,FirstName,MiddleName,LastName,UserType,BillingRate,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] Staff staff)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Username,Password,RoleId,CreatedBy,ModifiedBy,CreatedOn,ModifiedOn")] LoginUser loginUser)
         {
             if (ModelState.IsValid)
             {
-                var user = User.Identity;
-                staff.CreatedBy = user.Name;
-                staff.CreatedOn = DateTime.Today;
-
-                db.Staffs.Add(staff);
+                db.LoginUsers.Add(loginUser);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(staff);
+            return View(loginUser);
         }
 
-        // GET: Staffs/Edit/5
+        // GET: LoginUsers/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.UserType = new List<SelectListItem>
-            {
-                new SelectListItem{Text="Attorney",Value="Attorney"},
-                new SelectListItem{Text="Paralegal",Value="Paralegal"},
-                new SelectListItem{Text="Staff",Value="Staff"}
-            };
-            Staff staff = await db.Staffs.FindAsync(id);
-            if (staff == null)
+            LoginUser loginUser = await db.LoginUsers.FindAsync(id);
+            if (loginUser == null)
             {
                 return HttpNotFound();
             }
-            return View(staff);
+            return View(loginUser);
         }
 
-        // POST: Staffs/Edit/5
+        // POST: LoginUsers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "StaffId,FirstName,MiddleName,LastName,UserType,BillingRate,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] Staff staff)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Username,Password,RoleId,CreatedBy,ModifiedBy,CreatedOn,ModifiedOn")] LoginUser loginUser)
         {
             if (ModelState.IsValid)
             {
-                var user = User.Identity;
-                staff.ModifiedBy = user.Name;
-                staff.ModifiedOn = DateTime.Today;
-
-                db.Entry(staff).State = EntityState.Modified;
+                db.Entry(loginUser).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(staff);
+            return View(loginUser);
         }
 
-        // GET: Staffs/Delete/5
+        // GET: LoginUsers/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Staff staff = await db.Staffs.FindAsync(id);
-            if (staff == null)
+            LoginUser loginUser = await db.LoginUsers.FindAsync(id);
+            if (loginUser == null)
             {
                 return HttpNotFound();
             }
-            return View(staff);
+            return View(loginUser);
         }
 
-        // POST: Staffs/Delete/5
+        // POST: LoginUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Staff staff = await db.Staffs.FindAsync(id);
-            db.Staffs.Remove(staff);
+            LoginUser loginUser = await db.LoginUsers.FindAsync(id);
+            db.LoginUsers.Remove(loginUser);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

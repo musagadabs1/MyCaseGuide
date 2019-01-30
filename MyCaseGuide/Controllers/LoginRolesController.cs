@@ -11,133 +11,107 @@ using MyCaseGuide.Models;
 
 namespace MyCaseGuide.Controllers
 {
-    [Authorize(Roles ="Administrator,Attorney,Lawyer")]
-    public class StaffsController : Controller
+    public class LoginRolesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Staffs
+        // GET: LoginRoles
         public async Task<ActionResult> Index()
         {
-            var user = User.Identity;
-            if (HttpContext.User.IsInRole(LegalGuideUtility.ADMINISTRATOR))
-            {
-                return View(await db.Staffs.ToListAsync());
-            }
-            return View(await db.Staffs.Where(u => u.CreatedBy.Equals(user.Name)).ToListAsync());
+            return View(await db.LoginRoles.ToListAsync());
         }
 
-        // GET: Staffs/Details/5
+        // GET: LoginRoles/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Staff staff = await db.Staffs.FindAsync(id);
-            if (staff == null)
+            LoginRole loginRole = await db.LoginRoles.FindAsync(id);
+            if (loginRole == null)
             {
                 return HttpNotFound();
             }
-            return View(staff);
+            return View(loginRole);
         }
 
-        // GET: Staffs/Create
+        // GET: LoginRoles/Create
         public ActionResult Create()
         {
-            ViewBag.UserType = new List<SelectListItem>
-            {
-                new SelectListItem{Text="Attorney",Value="Attorney"},
-                new SelectListItem{Text="Paralegal",Value="Paralegal"},
-                new SelectListItem{Text="Staff",Value="Staff"}
-            };
             return View();
         }
 
-        // POST: Staffs/Create
+        // POST: LoginRoles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "StaffId,FirstName,MiddleName,LastName,UserType,BillingRate,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] Staff staff)
+        public async Task<ActionResult> Create([Bind(Include = "Id,RoleType,RoleDescription,CreatedBy,ModifiedBy,CreatedOn,ModifiedOn")] LoginRole loginRole)
         {
             if (ModelState.IsValid)
             {
-                var user = User.Identity;
-                staff.CreatedBy = user.Name;
-                staff.CreatedOn = DateTime.Today;
-
-                db.Staffs.Add(staff);
+                db.LoginRoles.Add(loginRole);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(staff);
+            return View(loginRole);
         }
 
-        // GET: Staffs/Edit/5
+        // GET: LoginRoles/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.UserType = new List<SelectListItem>
-            {
-                new SelectListItem{Text="Attorney",Value="Attorney"},
-                new SelectListItem{Text="Paralegal",Value="Paralegal"},
-                new SelectListItem{Text="Staff",Value="Staff"}
-            };
-            Staff staff = await db.Staffs.FindAsync(id);
-            if (staff == null)
+            LoginRole loginRole = await db.LoginRoles.FindAsync(id);
+            if (loginRole == null)
             {
                 return HttpNotFound();
             }
-            return View(staff);
+            return View(loginRole);
         }
 
-        // POST: Staffs/Edit/5
+        // POST: LoginRoles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "StaffId,FirstName,MiddleName,LastName,UserType,BillingRate,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] Staff staff)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,RoleType,RoleDescription,CreatedBy,ModifiedBy,CreatedOn,ModifiedOn")] LoginRole loginRole)
         {
             if (ModelState.IsValid)
             {
-                var user = User.Identity;
-                staff.ModifiedBy = user.Name;
-                staff.ModifiedOn = DateTime.Today;
-
-                db.Entry(staff).State = EntityState.Modified;
+                db.Entry(loginRole).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(staff);
+            return View(loginRole);
         }
 
-        // GET: Staffs/Delete/5
+        // GET: LoginRoles/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Staff staff = await db.Staffs.FindAsync(id);
-            if (staff == null)
+            LoginRole loginRole = await db.LoginRoles.FindAsync(id);
+            if (loginRole == null)
             {
                 return HttpNotFound();
             }
-            return View(staff);
+            return View(loginRole);
         }
 
-        // POST: Staffs/Delete/5
+        // POST: LoginRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Staff staff = await db.Staffs.FindAsync(id);
-            db.Staffs.Remove(staff);
+            LoginRole loginRole = await db.LoginRoles.FindAsync(id);
+            db.LoginRoles.Remove(loginRole);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

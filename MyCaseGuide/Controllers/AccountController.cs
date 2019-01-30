@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -69,28 +70,115 @@ namespace MyCaseGuide.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public  ActionResult Login(FormCollection model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+            string username = model["txtUsername"];
+            string password = model["txtPassword"];
 
+            var loginInfo = GetLogins(username, password);
+            if (loginInfo != null && loginInfo.Count() > 0)
+            {
+                var loginDetails = loginInfo.FirstOrDefault();
+                this.SignInUser(loginDetails.Username, false);
+                return RedirectToLocal(returnUrl);
+            }
+            return View(model);
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            //var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToLocal(returnUrl);
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        return View(model);
+            //}
+        }
+
+        private void SignInUser(string username, bool isPersistent)
+        {
+            var claims = new List<Claim>();
+            try
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                claims.Add(new Claim(ClaimTypes.Name, username));
+                var claimIdentities = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+                var ctx = Request.GetOwinContext();
+                var authenticationManager = ctx.Authentication;
+                authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, claimIdentities);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private List<LoginVM> GetLogins(string username, string password)
+        {
+            List<LoginVM> loginVMs = new List<LoginVM>();
+            try
+            {
+                MyCaseNewEntities db = new MyCaseNewEntities();
+
+                var getUsers =db.Users.Where(u => u.Username == username && u.Password == password).Select(u => new LoginVM
+                {
+                    Username = u.Username,
+                    Password = u.Password,
+                    RoleId=(int)u.RoleId
+                });
+
+                foreach (var item in getUsers)
+                {
+                    loginVMs.Add(new LoginVM
+                    {
+                        Username = item.Username,
+                        Password = item.Password
+                    });
+                }
+
+                return loginVMs;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        private bool IsLogin(string username, string password)
+        {
+            try
+            {
+                MyCaseNewEntities db = new MyCaseNewEntities();
+                var success = false;
+                var getUser = (from lo in db.Users
+                               where lo.Username == username && lo.Password == password
+                               select new
+                               {
+                                   lo.Username,
+                                   lo.Password
+                               }).FirstOrDefault();
+
+                if (getUser != null)
+                {
+                    success = true;
+                }
+                return success;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MyCaseGuide.Models
 {
-    public class Invoice
+    public class Invoice:BaseModel
     {
         public int InvoiceId { get; set; }
         [Required(AllowEmptyStrings =false,ErrorMessage ="Case Id Required.")]
@@ -21,10 +21,6 @@ namespace MyCaseGuide.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Unpaid Balance Required.")]
         [Display(Name = "Unpaid Balance")]
         public decimal UnpaidBalance { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
         public MyCase MyCase { get; set; }
     }
 }

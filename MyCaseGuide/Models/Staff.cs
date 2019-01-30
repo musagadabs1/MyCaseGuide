@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MyCaseGuide.Models
 {
-    public class Staff
+    public class Staff:BaseModel
     {
         public int StaffId { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
@@ -23,10 +23,6 @@ namespace MyCaseGuide.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Billing Rate is Required.")]
         [Display(Name = "Billing Rate")]
         public int BillingRate { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
 
         public virtual ICollection<MyCase> MyCases { get; set; }
     }

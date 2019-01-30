@@ -73,7 +73,7 @@ namespace MyCaseGuide.Controllers
 
                 var user = User.Identity;
                 document.CreatedBy = user.Name;
-                document.DateCreated = DateTime.Today;
+                document.CreatedOn = DateTime.Today;
                 document.DocPath = fileName;
                 
 
@@ -122,7 +122,7 @@ namespace MyCaseGuide.Controllers
                 var docPath = Path.Combine(folderPath, filePath);
 
                 var user = User.Identity;
-                document.DateModified = DateTime.Today;
+                document.ModifiedOn = DateTime.Today;
                 document.ModifiedBy = user.Name;
                 document.DocPath = fileName;
                 

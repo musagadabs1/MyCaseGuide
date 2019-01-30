@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MyCaseGuide.Models
 {
-    public class CaseEvent
+    public class CaseEvent:BaseModel
     {
         public int CaseEventId { get; set; }
         [Required(AllowEmptyStrings =false,ErrorMessage ="Case Id is Required.")]
@@ -36,10 +36,6 @@ namespace MyCaseGuide.Models
         [Display(Name = "Event Description")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
 
         public MyCase MyCase { get; set; }
         public Staff Staff { get; set; }

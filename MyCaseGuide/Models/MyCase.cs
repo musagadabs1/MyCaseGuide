@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MyCaseGuide.Models
 {
-    public class MyCase
+    public class MyCase:BaseModel
     {
         public int MyCaseId { get; set; }
         [Required(AllowEmptyStrings =false, ErrorMessage ="Client Name is required.")]
@@ -39,10 +39,6 @@ namespace MyCaseGuide.Models
         [Display(Name = "Statute Of Limitation")]
         [DataType(DataType.Date)]
         public DateTime StatuteOfLimitation { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
         public Client Client { get; set; }
         public virtual ICollection<Staff> Staffs { get; set; }
     }

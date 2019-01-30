@@ -86,7 +86,7 @@ namespace MyCaseGuide.Controllers
             {
                 var user = User.Identity;
                 myCase.CreatedBy = user.Name;
-                myCase.CreatedDate = DateTime.Today;
+                myCase.CreatedOn = DateTime.Today;
 
                 db.MyCases.Add(myCase);
                 await db.SaveChangesAsync();
@@ -165,7 +165,7 @@ namespace MyCaseGuide.Controllers
             {
                 var user = User.Identity;
                 myCase.ModifiedBy = user.Name;
-                myCase.ModifiedDate = DateTime.Today;
+                myCase.ModifiedOn = DateTime.Today;
 
                 db.Entry(myCase).State = EntityState.Modified;
                 await db.SaveChangesAsync();

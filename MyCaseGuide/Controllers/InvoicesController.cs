@@ -62,7 +62,7 @@ namespace MyCaseGuide.Controllers
             {
                 var user = User.Identity;
                 invoice.CreatedBy = user.Name;
-                invoice.CreatedDate = DateTime.Today;
+                invoice.CreatedOn = DateTime.Today;
 
                 db.Invoices.Add(invoice);
                 await db.SaveChangesAsync();
@@ -100,7 +100,7 @@ namespace MyCaseGuide.Controllers
             {
                 var user = User.Identity;
                 invoice.ModifiedBy = user.Name;
-                invoice.ModifiedDate = DateTime.Today;
+                invoice.ModifiedOn = DateTime.Today;
 
                 db.Entry(invoice).State = EntityState.Modified;
                 await db.SaveChangesAsync();

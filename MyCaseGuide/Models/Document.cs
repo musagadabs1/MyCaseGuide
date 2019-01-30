@@ -6,7 +6,7 @@ using System.Web;
 
 namespace MyCaseGuide.Models
 {
-    public class Document
+    public class Document:BaseModel
     {
         public int DocumentId { get; set; }
         [Required]
@@ -26,11 +26,6 @@ namespace MyCaseGuide.Models
         //[Required]
         [Display(Name ="Document Source")]
         public string DocPath { get; set; }
-
-        public string CreatedBy { get; set; }
-        public DateTime DateCreated { get; set; }
-        public string ModifiedBy { get; set; }
-        public DateTime DateModified { get; set; }
 
         public MyCase MyCase { get; set; }
     }

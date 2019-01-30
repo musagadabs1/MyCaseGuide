@@ -6,13 +6,12 @@ using System.Web;
 
 namespace MyCaseGuide.Models
 {
-    public class Client
+    public class Client:BaseModel
     {
         public int ClientId { get; set; }
         [Required(AllowEmptyStrings =false,ErrorMessage ="First Name is Required.")]
         [Display(Name ="First Name")]
         public string FirstName { get; set; }
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
         [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name is Required.")]
@@ -32,19 +31,10 @@ namespace MyCaseGuide.Models
         [Display(Name = "Client Address")]
         [DataType(DataType.MultilineText)]
         public string Address { get; set; }
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
-        //[Display(Name = "First Name")]
         public string City { get; set; }
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
-        //[Display(Name = "First Name")]
         public string Country { get; set; }
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "First Name is Required.")]
-        //[Display(Name = "First Name")]
         public string State { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public string ModifiedBy { get; set; }
-        public DateTime ModifiedDate { get; set; }
+
     }
 
 }

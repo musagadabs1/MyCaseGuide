@@ -48,6 +48,10 @@ namespace MyCaseGuide.Models
 
         public System.Data.Entity.DbSet<MyCaseGuide.Models.CaseEvent> CaseEvents { get; set; }
 
+        public System.Data.Entity.DbSet<MyCaseGuide.Models.LoginRole> LoginRoles { get; set; }
+
+        public System.Data.Entity.DbSet<MyCaseGuide.Models.LoginUser> LoginUsers { get; set; }
+
         //public System.Data.Entity.DbSet<MyCaseGuide.Models.MyCase> MyCases { get; set; }
     }
 }
