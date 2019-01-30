@@ -8,12 +8,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A071CEE6-876A-4101-AAAC-CAF15C365AFD}</ProjectGuid>
+    <ProjectGuid>{53C1ABD5-1A92-49AB-8628-BE10A727E0E6}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyCaseGuide</RootNamespace>
-    <AssemblyName>MyCaseGuide</AssemblyName>
+    <RootNamespace>InmateTest</RootNamespace>
+    <AssemblyName>InmateTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -174,76 +174,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CaseEventsController.cs" />
-    <Compile Include="Controllers\ClientsController.cs" />
-    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MyCasesController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\StaffsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901230617549_init.cs" />
-    <Compile Include="Migrations\201901230617549_init.Designer.cs">
-      <DependentUpon>201901230617549_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901231233555_Client.cs" />
-    <Compile Include="Migrations\201901231233555_Client.Designer.cs">
-      <DependentUpon>201901231233555_Client.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901240638335_ClientCase.cs" />
-    <Compile Include="Migrations\201901240638335_ClientCase.Designer.cs">
-      <DependentUpon>201901240638335_ClientCase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901240915188_Invoice.cs" />
-    <Compile Include="Migrations\201901240915188_Invoice.Designer.cs">
-      <DependentUpon>201901240915188_Invoice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901250719164_DocumentAdded.cs" />
-    <Compile Include="Migrations\201901250719164_DocumentAdded.Designer.cs">
-      <DependentUpon>201901250719164_DocumentAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901251110312_Events.cs" />
-    <Compile Include="Migrations\201901251110312_Events.Designer.cs">
-      <DependentUpon>201901251110312_Events.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901251121484_CaseEvent.cs" />
-    <Compile Include="Migrations\201901251121484_CaseEvent.Designer.cs">
-      <DependentUpon>201901251121484_CaseEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901252104499_StaffUpdate.cs" />
-    <Compile Include="Migrations\201901252104499_StaffUpdate.Designer.cs">
-      <DependentUpon>201901252104499_StaffUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901260518468_ClientUpdated.cs" />
-    <Compile Include="Migrations\201901260518468_ClientUpdated.Designer.cs">
-      <DependentUpon>201901260518468_ClientUpdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901260622072_MyCaseUpdated.cs" />
-    <Compile Include="Migrations\201901260622072_MyCaseUpdated.Designer.cs">
-      <DependentUpon>201901260622072_MyCaseUpdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901262108497_EventCaseChanged.cs" />
-    <Compile Include="Migrations\201901262108497_EventCaseChanged.Designer.cs">
-      <DependentUpon>201901262108497_EventCaseChanged.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Billing.cs" />
-    <Compile Include="Models\Document.cs" />
-    <Compile Include="Models\EventViewModel.cs" />
-    <Compile Include="Models\MyCase.cs" />
-    <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\CaseEvent.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Invoice.cs" />
-    <Compile Include="Models\LegalGuideUtility.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Staff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,43 +190,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\bootstrap\css\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap\css\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap\css\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap\css\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap\css\bootstrap.css" />
-    <Content Include="Content\bootstrap\css\bootstrap.min.css" />
-    <Content Include="Content\bootstrap\js\bootstrap.js" />
-    <Content Include="Content\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Content\css\my-login.css" />
-    <Content Include="Content\css\select2.css" />
-    <Content Include="Content\css\select2.min.css" />
-    <Content Include="Content\fullcalendar.css" />
-    <Content Include="Content\fullcalendar.min.css" />
-    <Content Include="Content\fullcalendar.print.css" />
-    <Content Include="Content\fullcalendar.print.min.css" />
-    <Content Include="Content\Images\clipart43844.png" />
-    <Content Include="Content\Images\legal-scale-icon-21.jpg" />
-    <Content Include="Content\Images\legal-scale-icon-5.jpg" />
-    <Content Include="Content\js\jquery.min.js" />
-    <Content Include="Content\js\my-login.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\bootstrap\css\bootstrap-grid.css.map" />
-    <Content Include="Content\bootstrap\css\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap\css\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap\css\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap\css\bootstrap.css.map" />
-    <Content Include="Content\bootstrap\css\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\fullcalendar.js" />
-    <Content Include="Scripts\fullcalendar.min.js" />
-    <Content Include="Scripts\gcal.js" />
-    <Content Include="Scripts\gcal.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -298,101 +206,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\lib\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-icons_2694e8_256x240.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-icons_3d80b3_256x240.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-icons_72a7cf_256x240.png" />
-    <Content Include="Scripts\lib\cupertino\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="Scripts\lib\cupertino\jquery-ui.min.css" />
-    <Content Include="Scripts\lib\jquery-ui.min.js" />
-    <Content Include="Scripts\lib\jquery.min.js" />
-    <Content Include="Scripts\lib\moment.min.js" />
-    <Content Include="Scripts\locale-all.js" />
-    <Content Include="Scripts\locale\af.js" />
-    <Content Include="Scripts\locale\ar-dz.js" />
-    <Content Include="Scripts\locale\ar-kw.js" />
-    <Content Include="Scripts\locale\ar-ly.js" />
-    <Content Include="Scripts\locale\ar-ma.js" />
-    <Content Include="Scripts\locale\ar-sa.js" />
-    <Content Include="Scripts\locale\ar-tn.js" />
-    <Content Include="Scripts\locale\ar.js" />
-    <Content Include="Scripts\locale\bg.js" />
-    <Content Include="Scripts\locale\bs.js" />
-    <Content Include="Scripts\locale\ca.js" />
-    <Content Include="Scripts\locale\cs.js" />
-    <Content Include="Scripts\locale\da.js" />
-    <Content Include="Scripts\locale\de-at.js" />
-    <Content Include="Scripts\locale\de-ch.js" />
-    <Content Include="Scripts\locale\de.js" />
-    <Content Include="Scripts\locale\el.js" />
-    <Content Include="Scripts\locale\en-au.js" />
-    <Content Include="Scripts\locale\en-ca.js" />
-    <Content Include="Scripts\locale\en-gb.js" />
-    <Content Include="Scripts\locale\en-ie.js" />
-    <Content Include="Scripts\locale\en-nz.js" />
-    <Content Include="Scripts\locale\es-do.js" />
-    <Content Include="Scripts\locale\es-us.js" />
-    <Content Include="Scripts\locale\es.js" />
-    <Content Include="Scripts\locale\et.js" />
-    <Content Include="Scripts\locale\eu.js" />
-    <Content Include="Scripts\locale\fa.js" />
-    <Content Include="Scripts\locale\fi.js" />
-    <Content Include="Scripts\locale\fr-ca.js" />
-    <Content Include="Scripts\locale\fr-ch.js" />
-    <Content Include="Scripts\locale\fr.js" />
-    <Content Include="Scripts\locale\gl.js" />
-    <Content Include="Scripts\locale\he.js" />
-    <Content Include="Scripts\locale\hi.js" />
-    <Content Include="Scripts\locale\hr.js" />
-    <Content Include="Scripts\locale\hu.js" />
-    <Content Include="Scripts\locale\id.js" />
-    <Content Include="Scripts\locale\is.js" />
-    <Content Include="Scripts\locale\it.js" />
-    <Content Include="Scripts\locale\ja.js" />
-    <Content Include="Scripts\locale\ka.js" />
-    <Content Include="Scripts\locale\kk.js" />
-    <Content Include="Scripts\locale\ko.js" />
-    <Content Include="Scripts\locale\lb.js" />
-    <Content Include="Scripts\locale\lt.js" />
-    <Content Include="Scripts\locale\lv.js" />
-    <Content Include="Scripts\locale\mk.js" />
-    <Content Include="Scripts\locale\ms-my.js" />
-    <Content Include="Scripts\locale\ms.js" />
-    <Content Include="Scripts\locale\nb.js" />
-    <Content Include="Scripts\locale\nl-be.js" />
-    <Content Include="Scripts\locale\nl.js" />
-    <Content Include="Scripts\locale\nn.js" />
-    <Content Include="Scripts\locale\pl.js" />
-    <Content Include="Scripts\locale\pt-br.js" />
-    <Content Include="Scripts\locale\pt.js" />
-    <Content Include="Scripts\locale\ro.js" />
-    <Content Include="Scripts\locale\ru.js" />
-    <Content Include="Scripts\locale\sk.js" />
-    <Content Include="Scripts\locale\sl.js" />
-    <Content Include="Scripts\locale\sq.js" />
-    <Content Include="Scripts\locale\sr-cyrl.js" />
-    <Content Include="Scripts\locale\sr.js" />
-    <Content Include="Scripts\locale\sv.js" />
-    <Content Include="Scripts\locale\th.js" />
-    <Content Include="Scripts\locale\tr.js" />
-    <Content Include="Scripts\locale\uk.js" />
-    <Content Include="Scripts\locale\vi.js" />
-    <Content Include="Scripts\locale\zh-cn.js" />
-    <Content Include="Scripts\locale\zh-tw.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\moment-with-locales.js" />
-    <Content Include="Scripts\moment-with-locales.min.js" />
-    <Content Include="Scripts\moment.js" />
-    <Content Include="Scripts\moment.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -426,42 +243,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\Clients\Create.cshtml" />
-    <Content Include="Views\Clients\Delete.cshtml" />
-    <Content Include="Views\Clients\Details.cshtml" />
-    <Content Include="Views\Clients\Edit.cshtml" />
-    <Content Include="Views\Clients\Index.cshtml" />
-    <Content Include="Views\MyCases\Create.cshtml" />
-    <Content Include="Views\MyCases\Delete.cshtml" />
-    <Content Include="Views\MyCases\Details.cshtml" />
-    <Content Include="Views\MyCases\Edit.cshtml" />
-    <Content Include="Views\MyCases\Index.cshtml" />
-    <Content Include="Views\Invoices\Create.cshtml" />
-    <Content Include="Views\Invoices\Delete.cshtml" />
-    <Content Include="Views\Invoices\Details.cshtml" />
-    <Content Include="Views\Invoices\Edit.cshtml" />
-    <Content Include="Views\Invoices\Index.cshtml" />
-    <Content Include="Views\Documents\Create.cshtml" />
-    <Content Include="Views\Documents\Delete.cshtml" />
-    <Content Include="Views\Documents\Details.cshtml" />
-    <Content Include="Views\Documents\Edit.cshtml" />
-    <Content Include="Views\Documents\Index.cshtml" />
-    <Content Include="Views\_CalendarEvent.cshtml" />
-    <Content Include="Views\Staffs\Create.cshtml" />
-    <Content Include="Views\Staffs\Delete.cshtml" />
-    <Content Include="Views\Staffs\Details.cshtml" />
-    <Content Include="Views\Staffs\Edit.cshtml" />
-    <Content Include="Views\Staffs\Index.cshtml" />
-    <Content Include="Views\CaseEvents\Create.cshtml" />
-    <Content Include="Views\CaseEvents\Delete.cshtml" />
-    <Content Include="Views\CaseEvents\Details.cshtml" />
-    <Content Include="Views\CaseEvents\Edit.cshtml" />
-    <Content Include="Views\CaseEvents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Docs\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -475,41 +259,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901230617549_init.resx">
-      <DependentUpon>201901230617549_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901231233555_Client.resx">
-      <DependentUpon>201901231233555_Client.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901240638335_ClientCase.resx">
-      <DependentUpon>201901240638335_ClientCase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901240915188_Invoice.resx">
-      <DependentUpon>201901240915188_Invoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901250719164_DocumentAdded.resx">
-      <DependentUpon>201901250719164_DocumentAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901251110312_Events.resx">
-      <DependentUpon>201901251110312_Events.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901251121484_CaseEvent.resx">
-      <DependentUpon>201901251121484_CaseEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901252104499_StaffUpdate.resx">
-      <DependentUpon>201901252104499_StaffUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901260518468_ClientUpdated.resx">
-      <DependentUpon>201901260518468_ClientUpdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901260622072_MyCaseUpdated.resx">
-      <DependentUpon>201901260622072_MyCaseUpdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901262108497_EventCaseChanged.resx">
-      <DependentUpon>201901262108497_EventCaseChanged.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -527,9 +276,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49405</DevelopmentServerPort>
+          <DevelopmentServerPort>49477</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49405/</IISUrl>
+          <IISUrl>http://localhost:49477/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
