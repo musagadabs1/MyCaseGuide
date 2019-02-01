@@ -53,7 +53,7 @@ namespace MyCaseGuide.Controllers
             {
                 var user = User.Identity;
                 staff.CreatedBy = user.Name;
-                staff.CreatedOn = DateTime.Today;
+                staff.CreatedOn = DateTime.Today.Date;
                 db.Staffs.Add(staff);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -88,8 +88,7 @@ namespace MyCaseGuide.Controllers
             {
                 var user = User.Identity;
                 staff.ModifiedBy = user.Name;
-                staff.ModifiedOn = DateTime.Today;
-
+                staff.ModifiedOn = DateTime.Today.Date;
                 db.Entry(staff).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

@@ -11,7 +11,7 @@ using MyCaseGuide.Models;
 
 namespace MyCaseGuide.Controllers
 {
-    [Authorize(Roles = "Administrator,Attorney,Lawyer")]
+    //[Authorize(Roles = "Administrator,Attorney,Lawyer")]
     public class InvoicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

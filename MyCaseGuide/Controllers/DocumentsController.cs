@@ -12,7 +12,7 @@ using System.IO;
 
 namespace MyCaseGuide.Controllers
 {
-    [Authorize(Roles ="Administrator,Attorney,Lawyer")]
+    //[Authorize(Roles ="Administrator,Attorney,Lawyer")]
     public class DocumentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -19,13 +19,16 @@ namespace MyCaseGuide.Models
         [Required]
         [Display(Name ="Surname")]
         public string Surname { get; set; }
-        [Required,Display(Name ="Other Names")]
+        [Required]
+        [Display(Name = "Other Names")]
         public string OtherNames { get; set; }
         public string Gender { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
+        [Required]
+        [Display(Name ="Staff Type")]
         public string Type { get; set; }
         [Display(Name ="Date of Birth")]
         [DataType(DataType.Date)]
@@ -34,29 +37,33 @@ namespace MyCaseGuide.Models
         [DataType(DataType.Date)]
         public DateTime DOE { get; set; }
         public bool Status { get; set; }
+        [Display(Name ="Address")]
+        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
         [Display(Name ="Postal Code")]
         public string PostalCode { get; set; }
         public string Town { get; set; }
-        [Display(Name ="Office Number")]
+        [Display(Name ="Office No")]
         public string OfficeNo { get; set; }
-        [Display(Name = "Mobile Number")]
+        [Display(Name = "Mobile No")]
         public string MobileNo { get; set; }
-        [Display(Name ="Email Address")]
+        [Display(Name = "Email Address")]
+        [DataType(DataType.EmailAddress)]
         public string EmailAddress { get; set; }
-        [Display(Name ="Next of Kin")]
+        [Display(Name = "Next of Kin")]
         public string NextOfKin { get; set; }
+        [Display(Name = "Next of Kin Relationship")]
         public string Relationship { get; set; }
-        [Display(Name ="Next of Kin Mobile No")]
+        [Display(Name = "Next of Kin Mobile No")]
         public string KTelephone { get; set; }
-        [Display(Name ="Heath Insurance Number")]
+        [Display(Name = "Health Insurance Number")]
         public string NHISNumber { get; set; }
+        [Display(Name ="KRA")]
         public string KRA { get; set; }
         public string Bank { get; set; }
         public string Branch { get; set; }
         [Display(Name ="Account Number")]
         public int AccountNumber { get; set; }
-        [Display(Name ="Secret Code")]
         public string SecretCode { get; set; }
         public string Password { get; set; }
     }

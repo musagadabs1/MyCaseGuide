@@ -181,11 +181,8 @@
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
-    <Compile Include="Controllers\LoginRolesController.cs" />
-    <Compile Include="Controllers\LoginUsersController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MyCasesController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,12 +237,28 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Billing.cs" />
     <Compile Include="Models\Client.cs">
-      <DependentUpon>MyCaseModel.tt</DependentUpon>
+      <DependentUpon>LegalGuideModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\EventViewModel.cs" />
-    <Compile Include="Models\LoginRole.cs" />
-    <Compile Include="Models\LoginUser.cs" />
+    <Compile Include="Models\LegalGuideModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegalGuideModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LegalGuideModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegalGuideModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LegalGuideModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LegalGuideModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginUser.cs">
+      <DependentUpon>LegalGuideModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\MyCase.cs" />
     <Compile Include="Models\CaseEvent.cs" />
@@ -253,29 +266,11 @@
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\LegalGuideUtility.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MyCaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyCaseModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MyCaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyCaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MyCaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyCaseModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Role.cs">
-      <DependentUpon>MyCaseModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Staff.cs">
-      <DependentUpon>MyCaseModel.tt</DependentUpon>
+      <DependentUpon>LegalGuideModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
-      <DependentUpon>MyCaseModel.tt</DependentUpon>
+    <Compile Include="Models\UserRole.cs">
+      <DependentUpon>LegalGuideModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -309,15 +304,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\MyCaseModel.Context.tt">
+    <Content Include="Models\LegalGuideModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyCaseModel.edmx</DependentUpon>
-      <LastGenOutput>MyCaseModel.Context.cs</LastGenOutput>
+      <DependentUpon>LegalGuideModel.edmx</DependentUpon>
+      <LastGenOutput>LegalGuideModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\MyCaseModel.tt">
+    <Content Include="Models\LegalGuideModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyCaseModel.edmx</DependentUpon>
-      <LastGenOutput>MyCaseModel.cs</LastGenOutput>
+      <DependentUpon>LegalGuideModel.edmx</DependentUpon>
+      <LastGenOutput>LegalGuideModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -327,12 +322,12 @@
     <Content Include="Content\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css.map" />
-    <EntityDeploy Include="Models\MyCaseModel.edmx">
+    <EntityDeploy Include="Models\LegalGuideModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MyCaseModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>LegalGuideModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\MyCaseModel.edmx.diagram">
-      <DependentUpon>MyCaseModel.edmx</DependentUpon>
+    <Content Include="Models\LegalGuideModel.edmx.diagram">
+      <DependentUpon>LegalGuideModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
@@ -463,7 +458,7 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\OldRegister.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -478,11 +473,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\Clients\Create.cshtml" />
-    <Content Include="Views\Clients\Delete.cshtml" />
-    <Content Include="Views\Clients\Details.cshtml" />
-    <Content Include="Views\Clients\Edit.cshtml" />
-    <Content Include="Views\Clients\Index.cshtml" />
     <Content Include="Views\MyCases\Create.cshtml" />
     <Content Include="Views\MyCases\Delete.cshtml" />
     <Content Include="Views\MyCases\Details.cshtml" />
@@ -499,11 +489,6 @@
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
     <Content Include="Views\_CalendarEvent.cshtml" />
-    <Content Include="Views\Staffs\Create.cshtml" />
-    <Content Include="Views\Staffs\Delete.cshtml" />
-    <Content Include="Views\Staffs\Details.cshtml" />
-    <Content Include="Views\Staffs\Edit.cshtml" />
-    <Content Include="Views\Staffs\Index.cshtml" />
     <Content Include="Views\CaseEvents\Create.cshtml" />
     <Content Include="Views\CaseEvents\Delete.cshtml" />
     <Content Include="Views\CaseEvents\Details.cshtml" />
@@ -519,6 +504,18 @@
     <Content Include="Views\LoginUsers\Details.cshtml" />
     <Content Include="Views\LoginUsers\Edit.cshtml" />
     <Content Include="Views\LoginUsers\Index.cshtml" />
+    <Content Include="Views\Account\NotInuseRegister.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Staffs\Create.cshtml" />
+    <Content Include="Views\Staffs\Delete.cshtml" />
+    <Content Include="Views\Staffs\Details.cshtml" />
+    <Content Include="Views\Staffs\Edit.cshtml" />
+    <Content Include="Views\Staffs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Docs\" />

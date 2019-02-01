@@ -5,24 +5,23 @@
 }
 <link rel="stylesheet" type="text/css" href="~/Content/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="~/Content/css/my-login.css">
-<link href="~/Content/Site.css" rel="stylesheet" />
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Register</title>
+    <title>Register new User</title>
 </head>
 <body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-    <div style="width:740px; margin:0 auto;" >
+
         <div class="form-horizontal">
             <h4>Register new User</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group" style="margin:10px;">
+            <div class="form-group">
                 @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
@@ -30,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="form-group" style="margin:10px;">
+            <div class="form-group">
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
@@ -38,21 +37,11 @@
                 </div>
             </div>
 
-            <div class="form-group" style="margin:10px;">
-                @Html.LabelFor(model => model.RoleId, "User Role", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.RoleId, (SelectList)ViewBag.RoleNames, new { @class = "form-control" })
+                    @Html.DropDownList("UserRole", (SelectList)ViewBag.RoleNames, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group" style="margin:10px;">
-                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.IsActive)
-                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                    </div>
                 </div>
             </div>
 
@@ -62,11 +51,15 @@
                 </div>
             </div>
         </div>
-    </div>
-        
     }
+
+    @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+
     <script src="~/Content/js/jquery.min.js"></script>
     <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Content/js/my-login.js"></script>
 </body>
 </html>
+

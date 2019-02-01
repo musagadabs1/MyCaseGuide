@@ -91,22 +91,6 @@ namespace MyCaseGuide.Controllers
                 return RedirectToLocal(returnUrl);
             }
             return View(model);
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            //var result = await SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
-            //switch (result)
-            //{
-            //    case SignInStatus.Success:
-            //        return RedirectToLocal(returnUrl);
-            //    case SignInStatus.LockedOut:
-            //        return View("Lockout");
-            //    case SignInStatus.RequiresVerification:
-            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-            //    case SignInStatus.Failure:
-            //    default:
-            //        ModelState.AddModelError("", "Invalid login attempt.");
-            //        return View(model);
-            //}
         }
 
         private void SignInUser(string username, bool isPersistent)
@@ -134,7 +118,7 @@ namespace MyCaseGuide.Controllers
             {
                 MyCaseNewEntities db = new MyCaseNewEntities();
 
-                var getUsers = db.Users.Where(u => u.Username == username && u.Password == password).Select(u => new LoginVM
+                var getUsers = db.LoginUsers.Where(u => u.Username == username && u.Password == password).Select(u => new LoginVM
                 {
                     Username = u.Username,
                     Password = u.Password,
@@ -165,7 +149,7 @@ namespace MyCaseGuide.Controllers
             {
                 MyCaseNewEntities db = new MyCaseNewEntities();
                 var success = false;
-                var getUser = (from lo in db.Users
+                var getUser = (from lo in db.LoginUsers
                                where lo.Username == username && lo.Password == password
                                select new
                                {
@@ -187,55 +171,12 @@ namespace MyCaseGuide.Controllers
         }
 
         //
-        // GET: /Account/VerifyCode
-        [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
-        {
-            // Require that the user has already logged in via username/password or external login
-            if (!await SignInManager.HasBeenVerifiedAsync())
-            {
-                return View("Error");
-            }
-            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
-        }
-
-        //
-        // POST: /Account/VerifyCode
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
-            // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(model.ReturnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid code.");
-                    return View(model);
-            }
-        }
-
-        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
 
-            ViewBag.RoleNames = new SelectList(db.Roles.Where(u => u.RoleType != "Admin").ToList(), "Id", "RoleType");
+            ViewBag.RoleNames = new SelectList(db.UserRoles.Where(u => u.RoleType != "Admin").ToList(), "Id", "RoleType");
             //ViewBag.RoleNames = new SelectList(_context.Roles.ToList(), "Name", "Name");
             return View();
         }
@@ -249,26 +190,32 @@ namespace MyCaseGuide.Controllers
         {
             if (ModelState.IsValid)
             {
-                MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.Username,model.Password,model.RoleId,null,null,true,null,out createStatus);
+                var user = User.Identity;
+                model.CreatedBy = user.Name;
+                model.CreatedOn = DateTime.Today.Date;
+                var roleId = model.RoleId;
+                var isActive = model.IsActive;
+                var username = model.Username;
+                var password = model.Password;
+                db.LoginUsers.Add(model);
+                db.SaveChanges();
+
+               // MembershipCreateStatus createStatus;
+                //Membership.CreateUser(model.Username,model.Password,model.RoleId,null,null,true,null,out createStatus);
                 //var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 //var result = await UserManager.CreateAsync(user, model.Password);
-                if (createStatus==MembershipCreateStatus.Success)
-                {
+                //if (createStatus==MembershipCreateStatus.Success)
+                //{
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    FormsAuthentication.SetAuthCookie(model.Username, false);
-                    var newUser = Membership.GetUser(model.Username);
+                    //FormsAuthentication.SetAuthCookie(model.Username, false);
+                    //var newUser = Membership.GetUser(model.Username);
 
 
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                   
                     //await this.UserManager.AddToRoleAsync(user.Id, model.UserRole);
-                    return RedirectToAction("Index", "Home");
-                }
-                ViewBag.RoleNames = new SelectList(db.Roles.Where(u => !u.RoleType.Contains("Admin")).ToList(), "Id", "RoleType");
+                    return RedirectToAction("Login", "Account");
+                //}
+                //ViewBag.RoleNames = new SelectList(db.Roles.Where(u => !u.RoleType.Contains("Admin")).ToList(), "Id", "RoleType");
                 //AddErrors(result);
             }
 

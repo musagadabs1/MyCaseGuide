@@ -53,7 +53,7 @@ namespace MyCaseGuide.Controllers
             {
                 var user = User.Identity;
                 client.CreatedBy = user.Name;
-                client.CreatedOn = DateTime.Today;
+                client.CreatedOn = DateTime.Today.Date;
                 db.Clients.Add(client);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -88,7 +88,7 @@ namespace MyCaseGuide.Controllers
             {
                 var user = User.Identity;
                 client.ModifiedBy = user.Name;
-                client.ModifiedOn = DateTime.Today;
+                client.ModifiedOn = DateTime.Today.Date;
                 db.Entry(client).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
