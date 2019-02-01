@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -19,6 +20,9 @@ namespace MyCaseGuide.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext _context =new ApplicationDbContext();
+        private readonly MyCaseNewEntities db = new MyCaseNewEntities();
+
+
 
         public AccountController()
         {
@@ -130,11 +134,11 @@ namespace MyCaseGuide.Controllers
             {
                 MyCaseNewEntities db = new MyCaseNewEntities();
 
-                var getUsers =db.Users.Where(u => u.Username == username && u.Password == password).Select(u => new LoginVM
+                var getUsers = db.Users.Where(u => u.Username == username && u.Password == password).Select(u => new LoginVM
                 {
                     Username = u.Username,
                     Password = u.Password,
-                    RoleId=(int)u.RoleId
+                    RoleId = (int)u.RoleId
                 });
 
                 foreach (var item in getUsers)
@@ -230,7 +234,8 @@ namespace MyCaseGuide.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.RoleNames = new SelectList(_context.Roles.Where(u => u.Name != "Administrator").ToList(), "Name", "Name");
+
+            ViewBag.RoleNames = new SelectList(db.Roles.Where(u => u.RoleType != "Admin").ToList(), "Id", "RoleType");
             //ViewBag.RoleNames = new SelectList(_context.Roles.ToList(), "Name", "Name");
             return View();
         }
@@ -240,26 +245,31 @@ namespace MyCaseGuide.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public  ActionResult Register(LoginUser model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                MembershipCreateStatus createStatus;
+                Membership.CreateUser(model.Username,model.Password,model.RoleId,null,null,true,null,out createStatus);
+                //var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                //var result = await UserManager.CreateAsync(user, model.Password);
+                if (createStatus==MembershipCreateStatus.Success)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    FormsAuthentication.SetAuthCookie(model.Username, false);
+                    var newUser = Membership.GetUser(model.Username);
+
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRole);
+                    //await this.UserManager.AddToRoleAsync(user.Id, model.UserRole);
                     return RedirectToAction("Index", "Home");
                 }
-                ViewBag.RoleNames = new SelectList(_context.Roles.Where(u => !u.Name.Contains("Administrator")).ToList(), "Name", "Name");
-                AddErrors(result);
+                ViewBag.RoleNames = new SelectList(db.Roles.Where(u => !u.RoleType.Contains("Admin")).ToList(), "Id", "RoleType");
+                //AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form

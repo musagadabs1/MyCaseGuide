@@ -239,13 +239,15 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Billing.cs" />
+    <Compile Include="Models\Client.cs">
+      <DependentUpon>MyCaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\EventViewModel.cs" />
     <Compile Include="Models\LoginRole.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\MyCase.cs" />
-    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\CaseEvent.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -269,7 +271,9 @@
     <Compile Include="Models\Role.cs">
       <DependentUpon>MyCaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\Staff.cs">
+      <DependentUpon>MyCaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>MyCaseModel.tt</DependentUpon>
     </Compile>

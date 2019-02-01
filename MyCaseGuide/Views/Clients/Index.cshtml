@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Clients</h2>
+<h2>Client List</h2>
 
-@*<p>
+<p>
     @Html.ActionLink("Create New", "Create")
-</p>*@
-<table class="table table-striped table-responsive table-bordered">
+</p>
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -24,23 +24,20 @@
             @Html.DisplayNameFor(model => model.EmailAddress)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContactGroup)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.City)
+        <th>
+            @Html.DisplayNameFor(model => model.Town)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Country)
+            @Html.DisplayNameFor(model => model.PostalCode)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>*@
+            @Html.DisplayNameFor(model => model.Website)
+        </th>
         <th></th>
     </tr>
 
@@ -59,27 +56,24 @@
             @Html.DisplayFor(modelItem => item.EmailAddress)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ContactGroup)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.PhoneNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Address)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.City)
+        <td>
+            @Html.DisplayFor(modelItem => item.Town)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Country)
+            @Html.DisplayFor(modelItem => item.PostalCode)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>*@
+            @Html.DisplayFor(modelItem => item.Website)
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ClientId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ClientId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ClientId })
+            @Html.ActionLink("Details", "Details", new { id=item.ClientId }) @*|
+            @Html.ActionLink("Delete", "Delete", new { id=item.ClientId })*@
         </td>
     </tr>
 }

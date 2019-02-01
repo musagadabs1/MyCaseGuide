@@ -39,8 +39,8 @@ namespace MyCaseGuide.Models
         [Display(Name = "Statute Of Limitation")]
         [DataType(DataType.Date)]
         public DateTime StatuteOfLimitation { get; set; }
-        public Client Client { get; set; }
-        public virtual ICollection<Staff> Staffs { get; set; }
+        //public Client Client { get; set; }
+        //public virtual ICollection<Staff> Staffs { get; set; }
     }
     public enum PracticeArea
     {

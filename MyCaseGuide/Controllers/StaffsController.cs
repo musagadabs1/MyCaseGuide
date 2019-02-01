@@ -11,20 +11,14 @@ using MyCaseGuide.Models;
 
 namespace MyCaseGuide.Controllers
 {
-    [Authorize(Roles ="Administrator,Attorney,Lawyer")]
     public class StaffsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private MyCaseNewEntities db = new MyCaseNewEntities();
 
         // GET: Staffs
         public async Task<ActionResult> Index()
         {
-            var user = User.Identity;
-            if (HttpContext.User.IsInRole(LegalGuideUtility.ADMINISTRATOR))
-            {
-                return View(await db.Staffs.ToListAsync());
-            }
-            return View(await db.Staffs.Where(u => u.CreatedBy.Equals(user.Name)).ToListAsync());
+            return View(await db.Staffs.ToListAsync());
         }
 
         // GET: Staffs/Details/5
@@ -45,12 +39,6 @@ namespace MyCaseGuide.Controllers
         // GET: Staffs/Create
         public ActionResult Create()
         {
-            ViewBag.UserType = new List<SelectListItem>
-            {
-                new SelectListItem{Text="Attorney",Value="Attorney"},
-                new SelectListItem{Text="Paralegal",Value="Paralegal"},
-                new SelectListItem{Text="Staff",Value="Staff"}
-            };
             return View();
         }
 
@@ -59,14 +47,13 @@ namespace MyCaseGuide.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "StaffId,FirstName,MiddleName,LastName,UserType,BillingRate,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] Staff staff)
+        public async Task<ActionResult> Create([Bind(Include = "StaffId,Surname,OtherNames,Gender,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn,Type,DOB,DOE,Status,Address,PostalCode,Town,OfficeNo,MobileNo,EmailAddress,NextOfKin,Relationship,KTelephone,NHISNumber,KRA,Bank,Branch,AccountNumber,SecretCode,Password")] Staff staff)
         {
             if (ModelState.IsValid)
             {
                 var user = User.Identity;
                 staff.CreatedBy = user.Name;
                 staff.CreatedOn = DateTime.Today;
-
                 db.Staffs.Add(staff);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -82,12 +69,6 @@ namespace MyCaseGuide.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.UserType = new List<SelectListItem>
-            {
-                new SelectListItem{Text="Attorney",Value="Attorney"},
-                new SelectListItem{Text="Paralegal",Value="Paralegal"},
-                new SelectListItem{Text="Staff",Value="Staff"}
-            };
             Staff staff = await db.Staffs.FindAsync(id);
             if (staff == null)
             {
@@ -101,7 +82,7 @@ namespace MyCaseGuide.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "StaffId,FirstName,MiddleName,LastName,UserType,BillingRate,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate")] Staff staff)
+        public async Task<ActionResult> Edit([Bind(Include = "StaffId,Surname,OtherNames,Gender,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn,Type,DOB,DOE,Status,Address,PostalCode,Town,OfficeNo,MobileNo,EmailAddress,NextOfKin,Relationship,KTelephone,NHISNumber,KRA,Bank,Branch,AccountNumber,SecretCode,Password")] Staff staff)
         {
             if (ModelState.IsValid)
             {

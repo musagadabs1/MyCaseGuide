@@ -22,5 +22,8 @@ namespace MyCaseGuide.Models
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+    
+        public virtual Role Role { get; set; }
     }
 }

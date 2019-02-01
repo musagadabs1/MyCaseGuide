@@ -11,7 +11,7 @@ namespace MyCaseGuide.Models
         public int ClientId { get; set; }
         public BillingMethod BillingMethod { get; set; }
 
-        public Client Client { get; set; }
+        //public Client Client { get; set; }
     }
     public enum BillingMethod
     {

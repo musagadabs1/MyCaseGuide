@@ -4,27 +4,81 @@
     ViewBag.Title = "Index";
 }
 
-<h2>List of Staff</h2>
+<h2>Staff List</h2>
 
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<table class="table table-striped table-responsive table-bordered">
+<table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Surname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MiddleName)
+            @Html.DisplayNameFor(model => model.OtherNames)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.Gender)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserType)
+            @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BillingRate)
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Town)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficeNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MobileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NextOfKin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Relationship)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KTelephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NHISNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KRA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Branch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecretCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
         </th>
         <th></th>
     </tr>
@@ -32,19 +86,73 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+            @Html.DisplayFor(modelItem => item.Surname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MiddleName)
+            @Html.DisplayFor(modelItem => item.OtherNames)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastName)
+            @Html.DisplayFor(modelItem => item.Gender)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserType)
+            @Html.DisplayFor(modelItem => item.Type)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BillingRate)
+            @Html.DisplayFor(modelItem => item.DOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Town)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficeNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NextOfKin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Relationship)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KTelephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHISNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KRA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bank)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecretCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.StaffId }) |

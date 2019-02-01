@@ -38,6 +38,6 @@ namespace MyCaseGuide.Models
         public string Description { get; set; }
 
         public MyCase MyCase { get; set; }
-        public Staff Staff { get; set; }
+        //public Staff Staff { get; set; }
     }
 }

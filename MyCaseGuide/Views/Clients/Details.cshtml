@@ -42,14 +42,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ContactGroup)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ContactGroup)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.PhoneNumber)
         </dt>
 
@@ -66,32 +58,32 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayNameFor(model => model.Town)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.City)
+            @Html.DisplayFor(model => model.Town)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Country)
+            @Html.DisplayNameFor(model => model.PostalCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Country)
+            @Html.DisplayFor(model => model.PostalCode)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.DisplayNameFor(model => model.Website)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.State)
+            @Html.DisplayFor(model => model.Website)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ClientId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ClientId }) @*|
+    @Html.ActionLink("Back to List", "Index")*@
 </p>
