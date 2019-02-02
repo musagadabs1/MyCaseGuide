@@ -11,6 +11,7 @@ using MyCaseGuide.Models;
 
 namespace MyCaseGuide.Controllers
 {
+    [Authorize]
     public class ClientsController : Controller
     {
         private MyCaseNewEntities db = new MyCaseNewEntities();

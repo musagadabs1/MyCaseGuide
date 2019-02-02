@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -15,5 +17,25 @@ namespace MyCaseGuide.Models
         public const string User = "User";
 
         public static List<string> Roles = new List<string> { "Administrator", "Attorney", "Lawyer", "User" };
+        public static string Encrypt(string str)
+        {
+            string hash = string.Empty;
+            try
+            {
+                using (SHA512 sha512Hash = SHA512.Create())
+                {
+                    //From String to byte array
+                    byte[] sourceBytes = Encoding.UTF8.GetBytes(str);
+                    byte[] hashBytes = sha512Hash.ComputeHash(sourceBytes);
+                    hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
+                }
+                return hash;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
