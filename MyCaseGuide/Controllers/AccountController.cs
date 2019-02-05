@@ -114,7 +114,7 @@ namespace MyCaseGuide.Controllers
         private List<LoginVM> GetLogins(string username, string password)
         {
             List<LoginVM> loginVMs = new List<LoginVM>();
-            password = LegalGuideUtility.Encrypt(password);
+            //password = LegalGuideUtility.Encrypt(password);
             try
             {
                 MyCaseNewEntities db = new MyCaseNewEntities();
@@ -194,7 +194,7 @@ namespace MyCaseGuide.Controllers
             {
                 model.CreatedBy = model.Username;
                 model.CreatedOn = DateTime.Today.Date;
-                model.Password = LegalGuideUtility.Encrypt(model.Password);
+                //model.Password = LegalGuideUtility.Encrypt(model.Password);
                 db.LoginUsers.Add(model);
                 db.SaveChanges();
 

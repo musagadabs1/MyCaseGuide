@@ -256,6 +256,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LegalGuideModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginRole.cs" />
     <Compile Include="Models\LoginUser.cs">
       <DependentUpon>LegalGuideModel.tt</DependentUpon>
     </Compile>

@@ -40,6 +40,21 @@ namespace MyCaseGuide.Controllers
         // GET: Staffs/Create
         public ActionResult Create()
         {
+            ViewBag.Type = new List<SelectListItem>
+           {
+              new SelectListItem{Text="Advocate",Value="Advocate"},
+               new SelectListItem{Text="Clerk",Value="Clerk"},
+               new SelectListItem{Text="Manager",Value="Manager"},
+               new SelectListItem{Text="Partner",Value="Partner"}
+            };
+            ViewBag.Gender = new List<SelectListItem> {
+                new SelectListItem{Text="Male",Value="M"},
+                new SelectListItem{Text="Female",Value="F"}
+            };
+            ViewBag.Status = new List<SelectListItem> {
+                new SelectListItem{Text="Permanent",Value="Permanent"},
+                new SelectListItem{Text="Temporary",Value="Temporary"}
+            };
             return View();
         }
 
@@ -71,6 +86,21 @@ namespace MyCaseGuide.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Staff staff = await db.Staffs.FindAsync(id);
+            ViewBag.Type = new List<SelectListItem>
+           {
+              new SelectListItem{Text="Advocate",Value="Advocate"},
+               new SelectListItem{Text="Clerk",Value="Clerk"},
+               new SelectListItem{Text="Manager",Value="Manager"},
+               new SelectListItem{Text="Partner",Value="Partner"}
+            };
+            ViewBag.Gender = new List<SelectListItem> {
+                new SelectListItem{Text="Male",Value="M"},
+                new SelectListItem{Text="Female",Value="F"}
+            };
+            ViewBag.Status = new List<SelectListItem> {
+                new SelectListItem{Text="Permanent",Value="Permanent"},
+                new SelectListItem{Text="Temporary",Value="Temporary"}
+            };
             if (staff == null)
             {
                 return HttpNotFound();
